@@ -1,0 +1,228 @@
+/* === PALET WARNA & FONT TEMA METAL (HITAM PUTIH) === */
+:root {
+    --color-background: #000000;
+    --color-text: #EAEAEA;
+    --color-accent: #FFFFFF; /* Putih sebagai aksen */
+    --color-highlight: #CCCCCC; /* Abu-abu muda untuk hover */
+    --color-border: #333333;
+
+    --font-heading: 'UnifrakturMaguntia', cursive;
+    --font-body: 'Oswald', sans-serif;
+}
+
+/* Basic Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    
+    /* === PENYESUAIAN UKURAN FONT === */
+    font-size: 17px; /* Sedikit lebih besar dari default (16px) */
+    line-height: 1.7; /* Menyesuaikan jarak antar baris */
+
+    letter-spacing: 0.5px;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--color-text);
+    font-weight: normal;
+    text-shadow: 1px 1px 8px var(--color-highlight);
+}
+p {
+    color: var(--color-text);
+}
+.hidden {
+    display: none !important;
+}
+
+/* === FIX 1: PERBAIKAN COVER === */
+#cover {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 100;
+    background-color: var(--color-background);
+    background-image: url('images/her.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 1.5s ease-out;
+    filter: grayscale(80%);
+}
+/* Overlay gelap untuk cover */
+#cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1;
+}
+.cover-content {
+    position: relative; /* Pastikan konten di atas overlay */
+    z-index: 2;
+    padding: 20px;
+    /* Background dan border di sini dihapus agar tidak ada kotak */
+}
+#cover h1 {
+    font-size: 5rem;
+    line-height: 1.1;
+    color: var(--color-accent);
+}
+#cover .guest-name {
+    font-size: 2rem;
+    color: var(--color-text);
+}
+
+
+/* General Section Styling */
+.section {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+    box-sizing: border-box;
+    background-image: url('images/cover-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1;
+}
+.section .content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    width: 100%;
+}
+.section h2 {
+    font-size: 3.5rem;
+    margin-bottom: 40px;
+    color: var(--color-accent);
+}
+.section h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: var(--color-accent);
+    margin: 15px auto 0;
+}
+.couple-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%; /* Membuat gambar menjadi bulat */
+    object-fit: cover; /* Memastikan gambar mengisi lingkaran tanpa distorsi */
+    border: 4px solid var(--color-border);
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+    filter: grayscale(90%);
+
+}
+.couple-image:hover {
+    border-color: var(--color-accent);
+}
+
+/* === FIX 2: Tata Letak Countdown Sejajar === */
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.countdown-timer div {
+    min-width: 120px; /* Memberi lebar minimum agar sejajar */
+    text-align: center;
+}
+.countdown-timer span {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--color-accent);
+    display: block; /* Pastikan span menempati 1 baris */
+}
+
+
+/* === FIX 3: Gallery Grid 4x di Laptop, 2x di HP === */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Default 2 kolom untuk HP */
+    gap: 15px;
+}
+.gallery img {
+    width: 100%;
+    height: 250px; /* Beri tinggi tetap agar rapi */
+    object-fit: cover;
+    border: 3px solid var(--color-border);
+    filter: grayscale(100%) contrast(100%);
+    transition: border-color 0.3s, filter 0.3s;
+}
+
+/* Aturan untuk layar lebih besar dari HP (tablet/laptop) */
+@media (min-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(4, 1fr); /* 4 kolom untuk laptop */
+    }
+}
+
+
+/* === FIX 4: Gift Box di Tengah === */
+.gift-card {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--color-border);
+    padding: 30px;
+    max-width: 400px; /* Beri lebar maksimum */
+    transition: border-color 0.3s;
+    margin: 0 auto; /* Ini kunci untuk membuatnya di tengah */
+}
+.gift-card:hover {
+    border-color: var(--color-accent);
+}
+.event-card {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--color-border);
+    padding: 30px;
+    width: 300px;
+}
+
+/* === FIX 5: Atur Footer agar tidak full-screen === */
+.footer-section {
+    min-height: auto; /* Meng-override tinggi 100vh dari .section */
+    padding-top: 80px;
+    padding-bottom: 60px;
+}
+
+
+/* Tombol & Elemen Lainnya (sudah benar) */
+.ampersand { font-family: var(--font-heading); font-size: 6rem; color: var(--color-accent); }
+.couple-details, .event-details { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+.btn, .btn-outline { display: inline-block; padding: 12px 30px; margin-top: 20px; font-family: var(--font-body); font-size: 1.1rem; font-weight: 700; text-decoration: none; cursor: pointer; transition: all 0.3s ease; border-radius: 0; text-transform: uppercase; color: var(--color-accent); border: 2px solid var(--color-accent); background-color: transparent; }
+.btn:hover, .btn-outline:hover { background-color: var(--color-accent); color: var(--color-background); }
+#music-control { position: fixed; bottom: 25px; right: 25px; z-index: 99; }
+#play-pause-btn { width: 50px; height: 50px; background-color: rgba(0, 0, 0, 0.8); border: 2px solid var(--color-accent); border-radius: 0; cursor: pointer; }
+#play-pause-btn svg { width: 24px; height: 24px; fill: var(--color-accent); }
+@media (max-width: 768px) {
+    #cover h1 { font-size: 3rem; }
+    .section h2 { font-size: 2.5rem; }
+    .couple-details { flex-direction: column; }
+    .section { background-attachment: scroll; }
+}
